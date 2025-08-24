@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\MypageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +21,12 @@ use App\Http\Controllers\AuthController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class, 'index']);
-    });
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mypage', [UserController::class, 'edit'])->name('mypage.edit');
+    Route::post('/mypage', [UserController::class, 'update'])->name('mypage.update');
+});
 
 // Route::get('/', function () {
 //     return view('welcome');

@@ -10,7 +10,7 @@ class MypageController extends Controller
     public function profile()
     {
         $user = Auth::user();
-        return view('users.profile', compact('user'));
+        return view('users.mypage', compact('user'));
     }
 
     public function profile_update(Request $request)
@@ -28,7 +28,7 @@ class MypageController extends Controller
         }
 
         $user = Auth::user();
-        $user->update($data);
+        // $user->update($data);
 
         return redirect()->route('user.mypage');
     }

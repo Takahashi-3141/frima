@@ -1,4 +1,4 @@
-@extends('layouts.app')
+<!-- @extends('layouts.app')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
@@ -33,4 +33,56 @@
         </table>
     </div>
 </div>
-@endsection
+@endsection -->
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>マイページ</title>
+    <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <img src="{{ asset('images/logo.svg') }}" alt="ロゴ">
+        <div class="search-box">
+            <input type="text" placeholder="なにをお探しですか？">
+        </div>
+        <div class="nav-links">
+            <a href="#">ログアウト</a>
+            <a href="#">マイページ</a>
+            <a href="#">出品</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="profile">
+            <div class="icon"></div>
+            <div class="info">
+                <h2>{{ Auth::user()->name ?? 'ユーザー名' }}</h2>
+                <a href="{{ route('profile.edit') }}">
+                    <button class="edit-btn">プロフィールを編集</button>
+                </a>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <a href="#" class="active">出品した商品</a>
+            <a href="#">購入した商品</a>
+        </div>
+
+        <div class="products">
+            @foreach ($products as $product)
+            <div class="product-card">
+                <div class="image"></div>
+                <p>{{ $product->name }}</p>
+            </div>
+            @endforeach
+        </div>
+    </div>
+
+</body>
+
+</html>
